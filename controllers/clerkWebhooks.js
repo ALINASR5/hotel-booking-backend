@@ -15,20 +15,17 @@ const clerkWebhooks = async (req, res) => {
         };
 
         switch (type) {
-            case "user.created": {
+            case "user.created":
                 await User.create(userData);
                 break;
-            }
 
-            case "user.updated": {
+            case "user.updated":
                 await User.findByIdAndUpdate(data.id, userData);
                 break;
-            }
 
-            case "user.deleted": {
+            case "user.deleted":
                 await User.findByIdAndDelete(data.id);
                 break;
-            }
 
             default:
                 break;
@@ -38,7 +35,6 @@ const clerkWebhooks = async (req, res) => {
             success: true,
             message: "Webhook Received",
         });
-
     } catch (error) {
         console.error("Webhook error:", error);
 
